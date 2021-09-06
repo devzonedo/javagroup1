@@ -28,4 +28,12 @@ public class ArithOperator {
     
     
     
+    public void myName(){
+    }
+    
+    
+    public void getAge(){
+        System.out.println("My age is 30");
+    }
+    
 }
