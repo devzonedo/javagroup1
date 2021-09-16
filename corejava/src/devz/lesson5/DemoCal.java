@@ -29,7 +29,42 @@ finally show the ans
  */
 package devz.lesson5;
 
+import java.util.Scanner;
 
 public class DemoCal {
-    
+
+    public static void main(String[] args) {
+        System.out.println("========DemoCal Started==========");
+        System.out.println("Allowed Operators are + - * /");
+
+        int n1 = 0;
+        int n2 = 0;
+        int ans = 0;
+        char op;
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter Number 1:");
+        n1 = in.nextInt();
+        System.out.println("Enter Number 2:");
+        n2 = in.nextInt();
+        System.out.println("Enter Number Operator:");
+        op = in.next().charAt(0);
+
+        if (op == '+') {
+            ans = n1 + n2;
+        } else if (op == '-') {
+            ans = n1 - n2;
+        } else if (op == '*') {
+            ans = n1 * n2;
+        } else if (op == '/') {
+            ans = n1 / n2;
+        } else {
+            System.out.println("Invalid Input Found");
+        }
+
+        System.out.println(n1 +"" +op +"" + n2 + "=" + ans);
+
+        System.out.println("========DemoCal End==========");
+    }
+
 }
