@@ -5,6 +5,8 @@
  */
 package devz.lesson7;
 
+import devz.lesson8.HomeFrame;
+
 /**
  *
  * @author devzo
@@ -35,6 +37,7 @@ public class FirstFrame extends javax.swing.JFrame {
         txtlname = new javax.swing.JTextField();
         btncreate = new javax.swing.JButton();
         txtfullname = new javax.swing.JTextField();
+        btnOpen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +52,13 @@ public class FirstFrame extends javax.swing.JFrame {
         btncreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncreateActionPerformed(evt);
+            }
+        });
+
+        btnOpen.setText("Open Home");
+        btnOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenActionPerformed(evt);
             }
         });
 
@@ -72,9 +82,11 @@ public class FirstFrame extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtfname)
-                                .addComponent(txtlname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))))
+                            .addComponent(txtfname)
+                            .addComponent(txtlname, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(btnOpen)))
                 .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,7 +107,9 @@ public class FirstFrame extends javax.swing.JFrame {
                 .addComponent(btncreate)
                 .addGap(33, 33, 33)
                 .addComponent(txtfullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(btnOpen)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,6 +138,14 @@ public class FirstFrame extends javax.swing.JFrame {
         txtfullname.setText(fulln);
        
     }//GEN-LAST:event_btncreateActionPerformed
+
+    private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
+
+        HomeFrame hm = new HomeFrame();
+        hm.setLocationRelativeTo(null);
+        hm.setVisible(true);
+        
+    }//GEN-LAST:event_btnOpenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +183,7 @@ public class FirstFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOpen;
     private javax.swing.JButton btncreate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
