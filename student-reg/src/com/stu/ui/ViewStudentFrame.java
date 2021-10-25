@@ -7,6 +7,7 @@ package com.stu.ui;
 
 import com.stu.bean.StudentBean;
 import com.stu.businesslogic.StudentLogic;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,6 +82,11 @@ public class ViewStudentFrame extends javax.swing.JFrame {
         jLabel9.setText("NIC");
 
         jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,9 +184,9 @@ public class ViewStudentFrame extends javax.swing.JFrame {
 
         String sid = txtid.getText();
         int id = Integer.parseInt(sid);
-        
+
         try {
-            StudentBean sb = new StudentLogic().getStudetDetail(id);  
+            StudentBean sb = new StudentLogic().getStudetDetail(id);
             txtfname.setText(sb.getFname());
             txtlname.setText(sb.getLname());
             txtgender.setText(sb.getGender());
@@ -191,11 +197,33 @@ public class ViewStudentFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        StudentBean stu = new StudentBean();
+        
+        stu.setId(Integer.parseInt(txtid.getText()));
+        
+        stu.setFname(txtfname.getText());
+        stu.setLname(txtlname.getText());
+        stu.setGender(txtgender.getText());
+        stu.setTp(txttp.getText());
+        stu.setAddress(txtaddress.getText());
+        stu.setCity(txtcity.getText());
+        stu.setNic(txtnic.getText());
+
+        //ready to update
+        boolean setStudentUpdate = new StudentLogic().setStudentUpdate(stu);
+        if (setStudentUpdate) {
+            JOptionPane.showMessageDialog(null, "Student Updated Success", "Student", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error in update", "Student", JOptionPane.WARNING_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

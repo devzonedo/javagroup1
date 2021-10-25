@@ -6,6 +6,8 @@
 package com.stu.ui;
 
 import com.stu.bean.StudentBean;
+import com.stu.bean.UserBean;
+import com.stu.businesslogic.AdminLogic;
 import com.stu.businesslogic.StudentLogic;
 import javax.swing.JOptionPane;
 
@@ -184,17 +186,15 @@ public class StudentRegFrame extends javax.swing.JFrame {
         String nic = txtnic.getText().trim();
         String address = txtaddress.getText().trim();
         String city = txtcity.getText().trim();
-        
-        
-        System.out.println("fname:"+fname);
-        System.out.println("lname:"+lname);
-        System.out.println("gender:"+gender);
-        System.out.println("tp:"+tp);
-        System.out.println("nic:"+nic);
-        System.out.println("address:"+address);
-        System.out.println("city:"+city);
-        
-        
+
+        System.out.println("fname:" + fname);
+        System.out.println("lname:" + lname);
+        System.out.println("gender:" + gender);
+        System.out.println("tp:" + tp);
+        System.out.println("nic:" + nic);
+        System.out.println("address:" + address);
+        System.out.println("city:" + city);
+
         StudentBean myBean = new StudentBean();
         myBean.setFname(fname);
         myBean.setLname(lname);
@@ -203,17 +203,30 @@ public class StudentRegFrame extends javax.swing.JFrame {
         myBean.setNic(nic);
         myBean.setAddress(address);
         myBean.setCity(city);
-        
+
         StudentLogic stuL = new StudentLogic();
         int newStudetID = stuL.registerNewStudent(myBean);
-        if(newStudetID != 0){
-                //this is new student 
-                JOptionPane.showMessageDialog(null, "New Student Inserted "+newStudetID, "Student", JOptionPane.INFORMATION_MESSAGE);
-                //we can clear the fields
-                txtfname.setText("");
+        if (newStudetID != 0) {
+            //this is new student 
+
+            //we can clear the fields
+            txtfname.setText("");
+
+            // insert into  tbl_user
+            UserBean ub = new UserBean();
+            ub.setNic(nic);
+            ub.setStudent_id(newStudetID);
+            ub.setUser_role("STUDENT");
+            boolean setNewUser = new AdminLogic().setNewUser(ub);
+            if(setNewUser){
+            JOptionPane.showMessageDialog(null, "New Student Inserted, new user created " + newStudetID, "Student", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+            JOptionPane.showMessageDialog(null, "Record insert error ", "Student", JOptionPane.ERROR_MESSAGE);
+            }
+            
+
         }
-        
-        
+
 
     }//GEN-LAST:event_btnStudentRegActionPerformed
 

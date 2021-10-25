@@ -50,29 +50,57 @@ public class StudentLogic {
             String sql = "SELECT * FROM tbl_student WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            
+
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-             sb =  new StudentBean();
-             sb.setId(rs.getInt("id"));
-             sb.setFname(rs.getString("fname"));
-             sb.setLname(rs.getString("lname"));
-             sb.setGender(rs.getString("gender"));
-             sb.setTp(rs.getString("tp"));
-             sb.setAddress(rs.getString("address"));
-             sb.setCity(rs.getString("city"));
-             sb.setNic(rs.getString("nic"));
+
+            while (rs.next()) {
+                sb = new StudentBean();
+                sb.setId(rs.getInt("id"));
+                sb.setFname(rs.getString("fname"));
+                sb.setLname(rs.getString("lname"));
+                sb.setGender(rs.getString("gender"));
+                sb.setTp(rs.getString("tp"));
+                sb.setAddress(rs.getString("address"));
+                sb.setCity(rs.getString("city"));
+                sb.setNic(rs.getString("nic"));
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(con != null){
-             con.close();
+        } finally {
+            if (con != null) {
+                con.close();
             }
         }
         return sb;
+    }
+
+    public boolean setStudentUpdate(StudentBean stubean) {
+        boolean flag = true;
+        Connection con = null;
+        try {
+            con = new DBConnection().getConnection();
+            String sql = "UPDATE tbl_student SET fname = ? , lname = ? , gender = ? , tp = ? , address = ? , city = ? , nic = ? \n" +
+" WHERE id = ? ";
+              PreparedStatement ps = con.prepareStatement(sql);
+              ps.setString(1, stubean.getFname());
+              ps.setString(2, stubean.getLname());
+              ps.setString(3, stubean.getGender());
+              ps.setString(4, stubean.getTp());
+              ps.setString(5, stubean.getAddress());
+              ps.setString(6, stubean.getCity());
+              ps.setString(7, stubean.getNic());
+              ps.setInt(8, stubean.getId());
+              System.out.println("ps:"+ps);
+
+              ps.executeUpdate();
+              
+        } catch (Exception e) {
+            e.printStackTrace();
+            flag = false;
+        }
+        
+        return flag;
     }
 
 }
