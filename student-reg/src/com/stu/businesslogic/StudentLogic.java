@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class StudentLogic {
 
@@ -80,27 +81,80 @@ public class StudentLogic {
         Connection con = null;
         try {
             con = new DBConnection().getConnection();
-            String sql = "UPDATE tbl_student SET fname = ? , lname = ? , gender = ? , tp = ? , address = ? , city = ? , nic = ? \n" +
-" WHERE id = ? ";
-              PreparedStatement ps = con.prepareStatement(sql);
-              ps.setString(1, stubean.getFname());
-              ps.setString(2, stubean.getLname());
-              ps.setString(3, stubean.getGender());
-              ps.setString(4, stubean.getTp());
-              ps.setString(5, stubean.getAddress());
-              ps.setString(6, stubean.getCity());
-              ps.setString(7, stubean.getNic());
-              ps.setInt(8, stubean.getId());
-              System.out.println("ps:"+ps);
+            String sql = "UPDATE tbl_student SET fname = ? , lname = ? , gender = ? , tp = ? , address = ? , city = ? , nic = ? \n"
+                    + " WHERE id = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, stubean.getFname());
+            ps.setString(2, stubean.getLname());
+            ps.setString(3, stubean.getGender());
+            ps.setString(4, stubean.getTp());
+            ps.setString(5, stubean.getAddress());
+            ps.setString(6, stubean.getCity());
+            ps.setString(7, stubean.getNic());
+            ps.setInt(8, stubean.getId());
+            System.out.println("ps:" + ps);
 
-              ps.executeUpdate();
-              
+            ps.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
             flag = false;
         }
-        
+
         return flag;
     }
+
+    public boolean setStudentDelete(int id) {
+        boolean flag = true;
+        Connection con = null;
+        try {
+            con = new DBConnection().getConnection();
+            String sql = "DELETE FROM tbl_student WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            System.out.println("ps:" + ps);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            flag = false;
+        }
+        return flag;
+    }
+
+   public ArrayList<StudentBean> getAllStudent() {
+        ArrayList<StudentBean> arrayList = new ArrayList<StudentBean>();
+        Connection con = null;
+        try {
+            con = new DBConnection().getConnection();
+            String sql = "SELECT * FROM tbl_student INNER JOIN tbl_subject ON tbl_student.subject_id = tbl_subject.id ";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                StudentBean s = new StudentBean();
+                s.setId(rs.getInt("id"));
+                s.setFname(rs.getString("fname"));
+                s.setLname(rs.getString("lname"));
+                s.setGender(rs.getString("gender"));
+                s.setTp(rs.getString("tp"));
+                s.setAddress(rs.getString("address"));
+                s.setCity(rs.getString("city"));
+                s.setNic(rs.getString("nic"));
+                s.setSubject_id(rs.getInt("subject_id"));
+                
+                arrayList.add(s);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return arrayList;
+
+    }
+    
+   public ArrayList<StudentBean> getAllStudent(int noofstu){
+   return null;
+   }
 
 }

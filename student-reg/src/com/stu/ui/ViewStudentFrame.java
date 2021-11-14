@@ -20,6 +20,8 @@ public class ViewStudentFrame extends javax.swing.JFrame {
      */
     public ViewStudentFrame() {
         initComponents();
+        btnDelete.setEnabled(false);
+        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -31,7 +33,6 @@ public class ViewStudentFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -50,13 +51,16 @@ public class ViewStudentFrame extends javax.swing.JFrame {
         txtaddress = new javax.swing.JTextField();
         txtcity = new javax.swing.JTextField();
         txtnic = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("View Student");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Search Student");
+        setResizable(false);
 
         jLabel2.setText("ID");
 
@@ -81,61 +85,91 @@ public class ViewStudentFrame extends javax.swing.JFrame {
 
         jLabel9.setText("NIC");
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Student Management System");
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Search Students");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stu/images/sms-search-student.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(180, 180, 180)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton1))
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))
-                                    .addGap(26, 26, 26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtfname)
-                                        .addComponent(txtlname)
-                                        .addComponent(txtgender)
-                                        .addComponent(txttp)
-                                        .addComponent(txtaddress)
-                                        .addComponent(txtcity)
-                                        .addComponent(txtnic, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jLabel6)
+                                                .addComponent(jLabel7)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel8))))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtfname)
+                                            .addComponent(txtlname)
+                                            .addComponent(txtgender)
+                                            .addComponent(txttp)
+                                            .addComponent(txtaddress)
+                                            .addComponent(txtcity)
+                                            .addComponent(txtnic, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                                        .addGap(1, 1, 1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnUpdate)
+                                        .addGap(18, 18, 18)))
+                                .addComponent(btnDelete))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,10 +204,12 @@ public class ViewStudentFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtnic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
                 .addContainerGap())
         );
 
@@ -187,13 +223,26 @@ public class ViewStudentFrame extends javax.swing.JFrame {
 
         try {
             StudentBean sb = new StudentLogic().getStudetDetail(id);
-            txtfname.setText(sb.getFname());
-            txtlname.setText(sb.getLname());
-            txtgender.setText(sb.getGender());
-            txttp.setText(sb.getTp());
-            txtaddress.setText(sb.getAddress());
-            txtcity.setText(sb.getCity());
-            txtnic.setText(sb.getNic());
+
+            if (sb != null) {
+                txtfname.setText(sb.getFname());
+                txtlname.setText(sb.getLname());
+                txtgender.setText(sb.getGender());
+                txttp.setText(sb.getTp());
+                txtaddress.setText(sb.getAddress());
+                txtcity.setText(sb.getCity());
+                txtnic.setText(sb.getNic());
+
+                btnDelete.setEnabled(true);
+                btnUpdate.setEnabled(true);
+            } else {
+                System.out.println("No Student found");
+                JOptionPane.showMessageDialog(null, "No Student Record Found", "Student", JOptionPane.WARNING_MESSAGE);
+                clearTextFields();
+                btnDelete.setEnabled(false);
+                btnUpdate.setEnabled(false);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -201,12 +250,12 @@ public class ViewStudentFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
         StudentBean stu = new StudentBean();
-        
+
         stu.setId(Integer.parseInt(txtid.getText()));
-        
+
         stu.setFname(txtfname.getText());
         stu.setLname(txtlname.getText());
         stu.setGender(txtgender.getText());
@@ -223,7 +272,44 @@ public class ViewStudentFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error in update", "Student", JOptionPane.WARNING_MESSAGE);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void clearTextFields() {
+        txtfname.setText("");
+        txtlname.setText("");
+        txtgender.setText("");
+        txttp.setText("");
+        txtaddress.setText("");
+        txtcity.setText("");
+        txtnic.setText("");
+    }
+
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        int result = JOptionPane.showConfirmDialog(null, "Sure? You want to delete the student?", "Student",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        System.out.println("result:" + result);
+        if (result == JOptionPane.YES_OPTION) {
+            System.out.println("YES clicked");
+
+            // going to delete the student 
+            int stuId = Integer.parseInt(txtid.getText());
+            boolean setStudentDelete = new StudentLogic().setStudentDelete(stuId);
+            if (setStudentDelete) {
+                JOptionPane.showMessageDialog(null, "Student Record Deleted", "Student", JOptionPane.INFORMATION_MESSAGE);
+                clearTextFields();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in delete", "Student", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else if (result == JOptionPane.NO_OPTION) {
+            System.out.println("NO clicked");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,9 +347,12 @@ public class ViewStudentFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

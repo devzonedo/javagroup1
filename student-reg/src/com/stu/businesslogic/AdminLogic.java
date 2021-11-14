@@ -66,6 +66,7 @@ public class AdminLogic {
                 u.setId(rs.getInt("id"));
                 u.setStudent_id(rs.getInt("student_id"));
                 u.setNic(rs.getString("nic"));
+                u.setUser_role(rs.getString("user_role"));
             }
 
         } catch (Exception e) {
